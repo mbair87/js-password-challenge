@@ -24,11 +24,17 @@ function selectPassword() {
   }
 
   //choose characters
+  function choosePassword() {
   var special = confirm("Would you like your password to include special characters?");
   var lower = confirm("Would you like your password to include lowercase characters?");
   var upper = confirm("Would you like your password to include uppercase characters?");
   var numbers = confirm("Would you like your password to include numbers?");
-  
+  while (special === false, lower === false, upper === false, numbers === false ) {
+    confirm("You must make at least one selection. Please try again.")
+    choosePassword();
+  }
+
+  }
   var passwordRequirements = {
     length: lengthSelection,
     includeSpecial: special,
