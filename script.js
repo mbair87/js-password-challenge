@@ -10,18 +10,20 @@
 
 //***Character selections***
 
-var lettersArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var uppercasedArr = lettersArr.map(lettersArr => lettersArr.toUpperCase());
+var lowercaseArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var uppercasedArr = lowercaseArr.map(letter => letter.toUpperCase() );
 var specialArr = ['!', '"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', ']', '[', '\', ^', '_', '`', '{', '|', '}', '~'];
 var numbersArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
+// Function to select password criteria
 function selectPassword() {
-  var lengthSelection= prompt("Please select a password length between 8 and 128 characters.");
-
-  if (lengthSelection === null || isNaN(lengthSelection) || lengthSelection < 8 || lengthSelection > 128) {
+  var lengthSelection = prompt("Please select a password length between 8 and 128 characters.");
+//confirm number between 8-128
+  while (lengthSelection === null || isNaN(lengthSelection) || lengthSelection < 8 || lengthSelection > 128) {
     lengthSelection = prompt("You must enter an number between 8 and 128.  Please make another selection.");
   }
- 
+
+  //choose characters
   var special = confirm("Would you like your password to include special characters?");
   var lower = confirm("Would you like your password to include lowercase characters?");
   var upper = confirm("Would you like your password to include uppercase characters?");
@@ -30,7 +32,7 @@ function selectPassword() {
   var passwordRequirements = {
     length: lengthSelection,
     includeSpecial: special,
-    includeLower: lower, 
+    includeLower: lower,
     includeUpper: upper,
     includeNumbers: numbers
   }
@@ -38,6 +40,27 @@ function selectPassword() {
   return passwordRequirements;
 
 }
+
+function generatePassword() {
+  var passwordCriteria = selectPassword();
+  console.log(passwordCriteria)
+  var finalPasswordArr = [];
+  if (passwordCriteria.includeUpper) {
+    finalPasswordArr = [...finalPasswordArr,...uppercasedArr]
+  }
+  if (passwordCriteria.includeLower) {
+    finalPasswordArr = [...finalPasswordArr,...lowercaseArr]
+  }
+  if (passwordCriteria.includeSpecial) {
+    finalPasswordArr = [...finalPasswordArr,...specialArr]
+  }
+  if (passwordCriteria.includeNumbers) {
+      finalPasswordArr = [...finalPasswordArr,...numbersArr]
+    }
+    console.log(finalPasswordArr);
+  }
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
