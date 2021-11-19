@@ -40,11 +40,11 @@ function selectPassword() {
   return passwordRequirements;
 
 }
-
+ var finalPasswordArr = [];
 function generatePassword() {
   var passwordCriteria = selectPassword();
   console.log(passwordCriteria)
-  var finalPasswordArr = [];
+ 
   if (passwordCriteria.includeUpper) {
     finalPasswordArr = [...finalPasswordArr,...uppercasedArr]
   }
@@ -58,7 +58,16 @@ function generatePassword() {
       finalPasswordArr = [...finalPasswordArr,...numbersArr]
     }
     console.log(finalPasswordArr);
-  }
+    for (var i = 0; i < finalPasswordArr.length; i++) {
+      var randomSelect = finalPasswordArr[Math.floor(Math.random() * finalPasswordArr.length)]; 
+      }
+  console.log(randomSelect);
+
+    }
+   
+
+
+
 
 
 
