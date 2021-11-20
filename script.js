@@ -57,13 +57,20 @@ function generatePassword() {
   if (passwordCriteria.includeNumbers) {
       finalPasswordArr = [...finalPasswordArr,...numbersArr]
     }
-    console.log(finalPasswordArr);
-    for (var i = 0; i < finalPasswordArr.length; i++) {
-      var randomSelect = finalPasswordArr[Math.floor(Math.random() * finalPasswordArr.length)]; 
-      }
-  console.log(randomSelect);
+    var password = [];
 
+    console.log(finalPasswordArr);
+    for (var i = 0; i < passwordCriteria.length; i++) {
+      var randomSelects = finalPasswordArr[Math.floor(Math.random() * finalPasswordArr.length)]; 
+      password.push(randomSelects);
     }
+    var pw = password.join("");
+   passwordDisplay(pw);
+    return pw;
+}
+function passwordDisplay(pw) {
+  document.getElementById("password").textContent = pw;
+}
    
 
 
