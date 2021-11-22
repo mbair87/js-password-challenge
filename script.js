@@ -28,6 +28,11 @@ function selectPassword() {
   var lower = confirm("Would you like your password to include lowercase characters?");
   var upper = confirm("Would you like your password to include uppercase characters?");
   var numbers = confirm("Would you like your password to include numbers?");
+  //confirm at at least one selection is made 
+  if (special === false && lower === false && upper === false && numbers === false ) {
+    confirm("You must make at least one selection. Please try again.") 
+  generatePassword(); 
+  }
   
   var passwordRequirements = {
     length: lengthSelection,
@@ -40,6 +45,7 @@ function selectPassword() {
   return passwordRequirements;
 
 }
+//final array generated off passwordRequirements
  var finalPasswordArr = [];
 function generatePassword() {
   var passwordCriteria = selectPassword();
@@ -57,13 +63,17 @@ function generatePassword() {
   if (passwordCriteria.includeNumbers) {
       finalPasswordArr = [...finalPasswordArr,...numbersArr]
     }
+    //declare array for randomly selected characters
     var password = [];
 
     console.log(finalPasswordArr);
+    //for loop to generate randomly selcted characters for password
     for (var i = 0; i < passwordCriteria.length; i++) {
       var randomSelects = finalPasswordArr[Math.floor(Math.random() * finalPasswordArr.length)]; 
+      //push random selections to password array 
       password.push(randomSelects);
     }
+    //join password array and display in text field. 
     var pw = password.join("");
    passwordDisplay(pw);
     return pw;
